@@ -1,6 +1,6 @@
-<%= form_for @user do |f| %>
+<%= form_for(@user, :validate => true) do |f| %>
   <%= f.label :username, 'Your Username here:' %>
-  <%= f.text_field :username, value: "user1" %><br />
+  <%= f.text_field :username, value: "user1", prompt: true %><br />
   E-mail : <%= f.email_field :email, placeholder: "example@example.com" %><br />
   Password : <%= f.password_field :password %><br />
   <%= f.submit %>

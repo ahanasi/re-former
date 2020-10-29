@@ -7,11 +7,27 @@ class UsersController < ApplicationController
     # @user = User.new(username: params[:username], email: params[:email], password: params[:password])
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Object successfully created"
+      flash.notice = "User '#{@user.username}' Created!"
       redirect_to new_user_path
     else
-      flash[:error] = "Something went wrong"
+      flash.notice = "Something went wrong!"
       render :new
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      flash.notice = "User '#{@user.username}' Updated!"
+      redirect_to new_user_path
+    else
+      flash.notice = "Something went wrong!"
+      render :edit
     end
   end
 
